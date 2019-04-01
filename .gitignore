@@ -1,0 +1,14 @@
+/target/
+mvnw
+mvnw.cmd
+
+.idea
+.mvn
+*.iws
+*.iml
+*.ipr
+*.zip
+
+*.index
+*.threads
+*.hprof
