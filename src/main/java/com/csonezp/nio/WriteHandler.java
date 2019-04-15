@@ -30,7 +30,7 @@ public class WriteHandler extends Handler {
             return;
         }
 
-        System.out.println("handle write");
+        System.out.println("handle write:"+resp);
 
         sc.write(ByteBuffer.wrap(resp.getBytes()));
 
