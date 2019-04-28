@@ -32,6 +32,9 @@ public class BinaryTree {
         return null;
     }
 
+    /**
+     * 深度遍历，用栈实现
+     */
     public void depthOrderTraversal() {
         if (root == null) {
             System.out.println("empty tree");
@@ -53,6 +56,9 @@ public class BinaryTree {
 
     }
 
+    /**
+     * 广度遍历，用队列实现
+     */
     public void levelOrderTraversal() {
         ArrayDeque<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
@@ -69,6 +75,9 @@ public class BinaryTree {
     }
 
 
+    /**
+     * 相邻层输出顺序相反的广度遍历，用两个stack实现
+     */
     public void fantasyTraversal(){
         Stack<TreeNode> stack1 = new Stack<>();
         Stack<TreeNode> stack2 = new Stack<>();
