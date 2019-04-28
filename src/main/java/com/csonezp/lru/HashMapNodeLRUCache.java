@@ -4,6 +4,7 @@ package com.csonezp.lru;
 
 import lombok.ToString;
 
+import java.io.*;
 import java.util.HashMap;
 
 /**
@@ -87,5 +88,17 @@ public class HashMapNodeLRUCache implements LRUCache {
         cache.put("key2", "key2");
         cache.put("key3", "key3");
         System.out.println(cache.toString());
+
+
+        try (BufferedReader in  = new BufferedReader(new FileReader("in.txt"));
+             BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"))) {
+            int charRead;
+            while ((charRead = in.read()) != -1) {
+                System.out.printf("%c ", (char)charRead);
+                out.write(charRead);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
