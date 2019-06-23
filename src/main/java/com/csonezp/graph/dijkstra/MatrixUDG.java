@@ -479,15 +479,13 @@ public class MatrixUDG {
 
         char[] vexs = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
 
-        Stack<Integer>[][] stacks = new Stack[mMatrix.length][mMatrix.length];
         // 初始化
         for (int i = 0; i < mVexs.length; i++) {
-            List<Stack<Integer>> list =new  ArrayList<Stack<Integer>>(mVexs.length);
+
             for (int j = 0; j < mVexs.length; j++) {
                 dist[i][j] = mMatrix[i][j];    // "顶点i"到"顶点j"的路径长度为"i到j的权值"。
                 path[i][j] = j;                // "顶点i"到"顶点j"的最短路径是经过顶点j。
-                stacks[i][j] = new Stack<>();
-                stacks[i][j].push(j);
+
             }
         }
 
@@ -503,7 +501,7 @@ public class MatrixUDG {
                         dist[i][j] = tmp;
                         // "i到j最短路径"对应的路径，经过k
                         path[i][j] = path[i][k];
-                        stacks[i][j].push(k);
+
                     }
                 }
             }
@@ -568,7 +566,7 @@ public class MatrixUDG {
         int[] prev = new int[pG.mVexs.length];
         int[] dist = new int[pG.mVexs.length];
         // dijkstra算法获取"第4个顶点"到其它各个顶点的最短距离
-        //pG.dijkstra(3, prev, dist);
+        pG.dijkstra(3, prev, dist);
 
         int[][] path = new int[pG.mVexs.length][pG.mVexs.length];
         int[][] floy = new int[pG.mVexs.length][pG.mVexs.length];
