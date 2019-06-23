@@ -12,6 +12,7 @@ public class Josephus {
      * @param totalCount 总人数
      * @param countNum   报数到几
      * @param aliveCount 最终存活几个
+     * @param startIndex 从哪个位置开始数
      */
     private static void josephus(int totalCount, int countNum, int aliveCount, int startIndex) {
         List<Integer> people = new ArrayList<>();
