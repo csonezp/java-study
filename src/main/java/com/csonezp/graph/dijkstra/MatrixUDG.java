@@ -438,6 +438,7 @@ public class MatrixUDG {
         // 遍历mVexs.length-1次；每次找出一个顶点的最短路径。
         int k=0;
         for (int i = 1; i < mVexs.length; i++) {
+
             // 寻找当前最小的路径；
             // 即，在未获取最短路径的顶点中，找到离vs最近的顶点(k)。
             int min = INF;
