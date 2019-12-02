@@ -2,6 +2,7 @@
 // All rights reserved
 package com.csonezp.common;
 
+import com.csonezp.utils.JacksonUtil;
 import lombok.Data;
 
 /**
@@ -9,16 +10,13 @@ import lombok.Data;
  * Created on 2019/3/8 上午11:11
 **/
 @Data
-public class Person {
-    private String name;
-    Long age;
-    Long value;
-
+public class PersonA extends Person {
     public static void main(String[] args) {
         Person person = new Person();
-        person.setName(null);
-        Person person1 = new Person();
-        person1.setName(person.getName());
-        System.out.println(person1);
+        person.setValue(1L);
+        person.setAge(1L);
+        person.setName("w2");
+        PersonA a = (PersonA) person;
+        System.out.println(JacksonUtil.toJson(a));
     }
 }
