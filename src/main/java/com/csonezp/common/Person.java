@@ -21,4 +21,9 @@ public class Person {
         person1.setName(person.getName());
         System.out.println(person1);
     }
+    static class DD{
+        public void test(){
+            age = 11L;
+        }
+    }
 }
