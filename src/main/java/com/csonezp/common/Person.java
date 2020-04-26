@@ -23,7 +23,7 @@ public class Person {
     }
     static class DD{
         public void test(){
-            age = 11L;
+
         }
     }
 }
