@@ -2,7 +2,7 @@
 // All rights reserved
 package com.csonezp.concurrent;
 
-import com.csonezp.AQS.MutexLock;
+import com.csonezp.concurrent.AQS.MutexLock;
 
 /**
  * @author zhangpeng34

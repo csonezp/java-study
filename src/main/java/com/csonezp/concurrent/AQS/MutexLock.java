@@ -1,6 +1,6 @@
 // Copyright (C) 2019 Meituan
 // All rights reserved
-package com.csonezp.AQS;
+package com.csonezp.concurrent.AQS;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author zhangpeng34

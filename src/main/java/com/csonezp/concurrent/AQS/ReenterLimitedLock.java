@@ -1,4 +1,4 @@
-package com.csonezp.AQS;
+package com.csonezp.concurrent.AQS;
 
 import com.csonezp.common.Person;
 import com.google.common.collect.Lists;

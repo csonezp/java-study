@@ -1,6 +1,6 @@
 // Copyright (C) 2019 Meituan
 // All rights reserved
-package com.csonezp.forkjoin;
+package com.csonezp.concurrent.forkjoin;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.Future;
