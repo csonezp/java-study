@@ -1,0 +1,33 @@
+logging:
+  level:
+    root: info
+
+#resilience4j.circuitbreaker:
+#  configs:
+#    default:
+#      failureRateThreshold: 10 #失败率百分比阈值，高于此阈值会触发熔断
+#      slowCallRateThreshold: 10 #慢请求比例百分比阈值，高于此阈值会触发熔断
+#      slowCallDurationThreshold : 1000 #超时时间阈值，高于此时间的请求会被认为是慢请求，配合slowCallRateThreshold使用可以根据超时时间熔断 单位ms
+#
+#      permittedNumberOfCallsInHalfOpenState: 10 #半开状态时允许的请求
+#      slideWindowType: TIME_BASED # 滑动窗口类型。TIME_BASED:最近几秒作为一个窗口；COUNT_BASED：最近多少次请求作为一个窗口
+#      slideWindowSize: 100 # 滑动窗口大小，如果是TIME_BASED，单位是秒；如果是COUNT_BASED，单位是个
+#      minimumNumberOfCalls: 10 #每个窗口最少有此配置个的错误/慢请求，才会开始计算是否触发熔断
+#
+#      waitDurationInOpenState: 10000 #断路器从打开到半开的等待时间大门外额哦ms
+#      automaticTransitionFromOpenToHalfOpenEnabled: true # 这里设置为true，断路器会自动从打开（断路）状态转换到半开状态；若置为false，则需要一个请求进入来触发熔断器状态转换
+#
+#      eventConsumerBufferSize: 100
+#
+#
+#
+#  instances:
+#    remoteService:
+#      baseConfig: default
+#      waitDurationInOpenState: 5000
+#      recordExceptions: #这些异常会被视为错误
+#        - java.io.IOException
+#        - java.util.concurrent.TimeoutException
+#        - com.csonezp.resilience4j.BizException
+#      ignoreExceptions: # 忽略的异常，这些异常不会被视为错误
+#        - java.lang.IllegalArgumentException
