@@ -22,13 +22,13 @@ public class CircuitBreakerConfigBean {
     @Bean
     public CircuitBreakerConfig circuitBreakerConfig() {
         CircuitBreakerConfig circuitBreakerConfig = CircuitBreakerConfig.custom()
-            .failureRateThreshold(10)
+            .failureRateThreshold(20)
             .slowCallRateThreshold(10)
             .slowCallDurationThreshold(Duration.ofMillis(1000))
             .permittedNumberOfCallsInHalfOpenState(10)
             .slidingWindowType(SlidingWindowType.TIME_BASED)
             .slidingWindowSize(100)
-            .minimumNumberOfCalls(10)
+            .minimumNumberOfCalls(20)
             .waitDurationInOpenState(Duration.ofSeconds(10))
             .automaticTransitionFromOpenToHalfOpenEnabled(true)
             .recordExceptions(BizException.class)

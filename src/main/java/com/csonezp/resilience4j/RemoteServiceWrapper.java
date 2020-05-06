@@ -31,24 +31,28 @@ class RemoteServiceWrapper {
 
         Try<Integer> result = Try.of(decoratedSupplier)
             .recover(throwable -> -3);
+
+        result.onSuccess(f -> System.out.println(f + ">" + circuitBreaker.getState()));
+        result.onFailure(f -> System.out.println(f + "=" + circuitBreaker.getState()));
         return result.get();
     }
 
     /**
      * 兜底降级
+     *
      * @param throwable
      * @return
      */
-    public Integer fallback(Throwable throwable){
+    public Integer fallback(Throwable throwable) {
         log.info("兜底降级");
         return -1;
     }
 
     /**
-     * @pa ram throwable
      * @return
+     * @pa ram throwable
      */
-    public Integer fallback(BizException throwable){
+    public Integer fallback(BizException throwable) {
         log.info("业务异常降级");
         return -1;
     }
