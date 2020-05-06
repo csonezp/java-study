@@ -27,7 +27,7 @@ class RemoteService {
         log.info("real process");
         int res = RandomUtils.nextInt(1, 11);
         System.out.println("real result:"+res);
-        if (res > 20) {
+        if (res > 6) {
             System.out.println("fail:"+fail.incrementAndGet());
             throw new BizException();
         }

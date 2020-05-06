@@ -2,8 +2,8 @@ package com.csonezp.resilience4j;
 
 import java.time.Duration;
 
-import com.csonezp.utils.JacksonUtil;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
+import io.github.resilience4j.circuitbreaker.CircuitBreaker.StateTransition;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig.SlidingWindowType;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
@@ -49,11 +49,21 @@ public class CircuitBreakerConfigBean {
         CircuitBreaker circuitBreaker = circuitBreakerRegistry.circuitBreaker("remoteService");
         // 分类监听事件
         circuitBreaker.getEventPublisher()
-            .onSuccess(event -> log.info(event.toString()))
-            .onError(event -> log.info(event.toString()))
-            .onIgnoredError(event -> log.info(event.toString()))
-            .onReset(event -> log.info(event.toString()))
-            .onStateTransition(event -> log.info(event.toString()));
+            //.onSuccess(event -> log.info("success!" + event.toString()))
+            //.onError(event -> log.info("error!" + event.toString()))
+            //.onIgnoredError(event -> log.info("ignored!" + event.toString()))
+            //.onReset(event -> log.info("reset!" + event.toString()))
+            .onStateTransition(event -> {
+                log.info("state transition!" + event.toString());
+                StateTransition stateTransition = event.getStateTransition();
+                switch (stateTransition){
+                    case CLOSED_TO_OPEN:log.error("断路器打开！开始降级！");break;
+                    case OPEN_TO_HALF_OPEN:log.error("断路器半开！开始恢复！");break;
+                    case HALF_OPEN_TO_CLOSED:log.error("断路器关闭！恢复正常！");break;
+                    case HALF_OPEN_TO_OPEN:log.error("断路器打开！恢复失败！");break;
+                    default:log.info(stateTransition.toString());
+                }
+            });
         return circuitBreaker;
     }
 
