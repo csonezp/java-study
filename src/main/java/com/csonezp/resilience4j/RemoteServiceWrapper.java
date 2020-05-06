@@ -25,9 +25,9 @@ class RemoteServiceWrapper {
     @Autowired
     RemoteService remoteService;
 
-    public Integer process() {
+    public Integer process(Boolean success) {
         CheckedFunction0<Integer> decoratedSupplier = CircuitBreaker
-            .decorateCheckedSupplier(circuitBreaker, remoteService::process);
+            .decorateCheckedSupplier(circuitBreaker, () -> remoteService.process(success));
 
         Try<Integer> result = Try.of(decoratedSupplier)
             .recover(throwable -> -3);

@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.google.common.collect.Lists;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
 import org.springframework.stereotype.Component;
@@ -22,10 +23,15 @@ class RemoteService {
 
     AtomicInteger pass = new AtomicInteger(0);
     AtomicInteger fail = new AtomicInteger(0);
-    //@CircuitBreaker(name = CIRCUIT_BREAKER_NAME, fallbackMethod = "fallback")
-    public Integer process() throws BizException {
+
+    @CircuitBreaker(name = CIRCUIT_BREAKER_NAME, fallbackMethod = "fallback")
+    public Integer process(Boolean alwaysSuccess) throws BizException {
+
         log.info("real process");
         int res = RandomUtils.nextInt(1, 11);
+        if(alwaysSuccess){
+            res = 1;
+        }
         System.out.println("real result:"+res);
         if (res > 6) {
             System.out.println("fail:"+fail.incrementAndGet());
