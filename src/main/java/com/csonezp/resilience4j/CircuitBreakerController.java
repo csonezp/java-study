@@ -28,4 +28,9 @@ public class CircuitBreakerController {
     public Integer test2(@RequestParam(defaultValue = "false") Boolean success) throws BizException {
         return remoteService.process(success);
     }
+
+    @GetMapping("/breaker3")
+    public Integer test3(@RequestParam(defaultValue = "false") Boolean success) throws BizException {
+        return remoteService.process2(success);
+    }
 }

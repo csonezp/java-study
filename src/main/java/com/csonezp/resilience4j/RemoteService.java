@@ -28,34 +28,70 @@ class RemoteService {
     public Integer process(Boolean alwaysSuccess) throws BizException {
 
         log.info("real process");
+
+        int time = 60;
+        System.out.println("time:" + time);
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         int res = RandomUtils.nextInt(1, 11);
-        if(alwaysSuccess){
+        if (alwaysSuccess) {
             res = 1;
         }
-        System.out.println("real result:"+res);
-        if (res > 6) {
-            System.out.println("fail:"+fail.incrementAndGet());
+        System.out.println("real result:" + res);
+        if (res > 20) {
+            System.out.println("fail:" + fail.incrementAndGet());
             throw new BizException();
         }
-        System.out.println("success:"+pass.incrementAndGet());
+        System.out.println("success:" + pass.incrementAndGet());
+        return res;
+    }
+
+    @CircuitBreaker(name = CIRCUIT_BREAKER_NAME, fallbackMethod = "fallback")
+    public Integer process2(Boolean alwaysSuccess) throws BizException {
+
+        log.info("real process");
+
+        int time = 60;
+        System.out.println("time:" + time);
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        int res = RandomUtils.nextInt(1, 11);
+        if (alwaysSuccess) {
+            res = 1;
+        }
+        System.out.println("real result:" + res);
+        if (res > 20) {
+            System.out.println("fail:" + fail.incrementAndGet());
+            throw new BizException();
+        }
+        System.out.println("success:" + pass.incrementAndGet());
         return res;
     }
 
     /**
      * 兜底降级
+     *
      * @param throwable
      * @return
      */
-    public Integer fallback(Throwable throwable){
+    public Integer fallback(Throwable throwable) {
         log.info("兜底降级");
         return -1;
     }
 
     /**
-     * @pa ram throwable
      * @return
+     * @pa ram throwable
      */
-    public Integer fallback(BizException throwable){
+    public Integer fallback(BizException throwable) {
         log.info("业务异常降级");
         return -1;
     }

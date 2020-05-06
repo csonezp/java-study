@@ -24,7 +24,7 @@ public class CircuitBreakerConfigBean {
         CircuitBreakerConfig circuitBreakerConfig = CircuitBreakerConfig.custom()
             .failureRateThreshold(20)
             .slowCallRateThreshold(10)
-            .slowCallDurationThreshold(Duration.ofMillis(1000))
+            .slowCallDurationThreshold(Duration.ofMillis(50))
             .permittedNumberOfCallsInHalfOpenState(10)
             .slidingWindowType(SlidingWindowType.TIME_BASED)
             .slidingWindowSize(100)
